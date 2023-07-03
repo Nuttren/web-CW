@@ -1,0 +1,67 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1 # идентификатор набора изменений
+      author: Roman # имя разработчика, который добавил набор изменений
+      changes: # список изменений в этом наборе
+        - createTable: # команда liquibase — создает таблицу
+            tableName: lots # название таблицы
+            columns: # колонки к данной таблице
+              - column: # колонка
+                  name: lot_id # название колонки
+                  type: bigint # тип
+                  autoIncrement: true # признак автоинкремента колонки
+                  constraints: # ограничения колонки
+                    primaryKey: true
+              - column:
+                  name: lot_title
+                  type: varchar
+              - column:
+                  name: lot_status
+                  type: varchar
+              - column:
+                  name: lot_created_at
+                  type: timestamp
+                  defaultValueComputed: 'CURRENT_TIMESTAMP'
+              - column:
+                  name: lot_start_time
+                  type: timestamp
+                  defaultValueComputed: 'CURRENT_TIMESTAMP'
+              - column:
+                  name: lot_end_at
+                  type: timestamp
+                  defaultValueComputed: 'CURRENT_TIMESTAMP'
+              - column:
+                  name: lot_start_price
+                  type: integer
+              - column:
+                  name: bid_price
+                  type: integer
+              - column:
+                  name: lot_description
+                  type: varchar
+
+
+        - createTable: # команда liquibase — создает таблицу
+            tableName: bids # название таблицы
+            columns: # колонки к данной таблице
+              - column: # колонка
+                  name: bid_id # название колонки
+                  type: bigint # тип
+                  autoIncrement: true # признак автоинкремента колонки
+                  constraints: # ограничения колонки
+                    primaryKey: true
+              - column:
+                  name: lot_id
+                  type: integer
+                  constraints:
+                    foreignKey:
+                      name: bids_lots_lot_id_fk
+                      referencedTableName: lots
+                      referencedColumnNames: lot_id
+              - column:
+                  name: bid_bidder_name
+                  type: varchar
+              - column:
+                  name: bid_timestamp
+                  type: timestamp
+                  defaultValueComputed: 'CURRENT_TIMESTAMP'
