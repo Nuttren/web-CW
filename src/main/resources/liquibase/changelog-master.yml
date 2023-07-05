@@ -27,7 +27,7 @@ databaseChangeLog:
                   type: timestamp
                   defaultValueComputed: 'CURRENT_TIMESTAMP'
               - column:
-                  name: lot_end_at
+                  name: lot_end_time
                   type: timestamp
                   defaultValueComputed: 'CURRENT_TIMESTAMP'
               - column:
