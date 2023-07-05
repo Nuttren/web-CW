@@ -52,7 +52,7 @@ databaseChangeLog:
                     primaryKey: true
               - column:
                   name: lot_id
-                  type: integer
+                  type: bigint
                   constraints:
                     foreignKey:
                       name: bids_lots_lot_id_fk

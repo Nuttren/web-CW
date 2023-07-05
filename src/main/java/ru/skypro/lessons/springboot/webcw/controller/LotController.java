@@ -39,7 +39,7 @@ public class LotController {
         try {
             lotService.startBidding(lotId);
             return ResponseEntity.ok("Лот переведен в статус 'Начались торги'");
-        } catch (NoSuchElementException e) {
+        } catch (LotNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Лот не найден");
         }
     }
@@ -83,7 +83,7 @@ public class LotController {
         try {
             lotService.stopBidding(lotId);
             return ResponseEntity.ok("Лот переведен в статус 'Торги окончены'");
-        } catch (NoSuchElementException e) {
+        } catch (LotNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Лот не найден");
         }
     }

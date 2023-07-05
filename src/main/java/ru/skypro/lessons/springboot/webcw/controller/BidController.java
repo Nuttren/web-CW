@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.skypro.lessons.springboot.webcw.dto.BidDTO;
 import ru.skypro.lessons.springboot.webcw.exception.InvalidStateException;
+import ru.skypro.lessons.springboot.webcw.exception.LotNotFoundException;
 import ru.skypro.lessons.springboot.webcw.service.BidService;
 
 import java.util.NoSuchElementException;
@@ -25,7 +26,7 @@ public class BidController {
             return ResponseEntity.ok("Ставка создана"); // Return the successfully created bid
         } catch (InvalidStateException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Лот в неверном статусе"); // Return status 400 with error description
-        } catch (NoSuchElementException e) {
+        } catch (LotNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Лот не найден"); // Return status 404 with error description
         }
     }
